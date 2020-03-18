@@ -21,11 +21,11 @@ func createFile(fileName string) *os.File {
 	return f
 }
 
-func copyFile(srcLocation, destLocation string) {
-	destF := createFile(destLocation)
+func copyFile(src, dest string) {
+	destF := createFile(dest)
 	defer destF.Close()
 
-	srcF, err := os.Open(srcLocation)
+	srcF, err := os.Open(src)
 	if err != nil {
 		panic(err)
 	}
@@ -34,21 +34,7 @@ func copyFile(srcLocation, destLocation string) {
 	io.Copy(destF, srcF)
 }
 
-func copyOverCSS() {
-	srcLocation := "src/assets/css/site.css"
-	destLocation := "dest/css/site.css"
-
-	copyFile(srcLocation, destLocation)
-}
-
-func copyOverImages() {
-	srcLocation := "src/assets/images/louis-sayers.jpg"
-	destLocation := "dest/img/louis-sayers.jpg"
-
-	copyFile(srcLocation, destLocation)
-}
-
-func createIndexPage() {
+func createIndexPage(data PageDetails) {
 	homeTemplate, err := template.ParseFiles("src/layouts/base.gohtml", "src/index.gohtml")
 	if err != nil {
 		panic(err)
@@ -57,14 +43,18 @@ func createIndexPage() {
 	f := createFile("dest/index.html")
 	defer f.Close()
 
-	homeTemplate.Execute(f, nil)
+	homeTemplate.Execute(f, data)
 }
 
+type PageDetails struct {
+	PageName string
+}
 func main() {
 	mkDirs("dest/img/")
 	mkDirs("dest/css/")
 
-	copyOverCSS()
-	copyOverImages()
-	createIndexPage()
+	copyFile("src/assets/css/site.css", "dest/css/site.css")
+	copyFile("src/assets/images/louis-sayers.jpg", "dest/img/louis-sayers.jpg")
+
+	createIndexPage(PageDetails{ PageName: "home" })
 }

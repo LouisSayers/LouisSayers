@@ -1,3 +1,17 @@
+body {
+  font-family: "Muli", "Helvetica", "Arial", "sans-serif";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Catamaran", "Helvetica", "Arial", "sans-serif";
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+
 h1 {
-  color: green;
+  font-size: 2.2em;
+}
+
+body.home p {
+  color: red;
 }
