@@ -13,14 +13,19 @@ func mkDirs(dirName string) {
 	}
 }
 
-func copyOverCSS() {
-	mkDirs("dest/css/")
-
-	destCSS, err := os.Create("dest/css/site.css")
+func createFile(fileName string) *os.File {
+	f, err := os.Create(fileName)
 	if err != nil {
 		panic(err)
 	}
-	defer destCSS.Close()
+	return f
+}
+
+func copyOverCSS() {
+	mkDirs("dest/css/")
+
+	f := createFile("dest/css/site.css")
+	defer f.Close()
 
 	srcCSS, err := os.Open("src/assets/css/site.css")
 	if err != nil {
@@ -28,7 +33,7 @@ func copyOverCSS() {
 	}
 	defer srcCSS.Close()
 
-	io.Copy(destCSS, srcCSS)
+	io.Copy(f, srcCSS)
 }
 
 func createIndexPage() {
@@ -37,14 +42,12 @@ func createIndexPage() {
 		panic(err)
 	}
 
-	indexHtml, err := os.Create("dest/index.html")
-	if err != nil {
-		panic(err)
-	}
-	defer indexHtml.Close()
+	f := createFile("dest/index.html")
+	defer f.Close()
 
-	homeTemplate.Execute(indexHtml, nil)
+	homeTemplate.Execute(f, nil)
 }
+
 
 func main() {
 	mkDirs("dest")
