@@ -21,34 +21,31 @@ func createFile(fileName string) *os.File {
 	return f
 }
 
-func copyOverCSS() {
-	mkDirs("dest/css/")
+func copyFile(srcLocation, destLocation string) {
+	destF := createFile(destLocation)
+	defer destF.Close()
 
-	f := createFile("dest/css/site.css")
-	defer f.Close()
-
-	srcCSS, err := os.Open("src/assets/css/site.css")
+	srcF, err := os.Open(srcLocation)
 	if err != nil {
 		panic(err)
 	}
-	defer srcCSS.Close()
+	defer srcF.Close()
 
-	io.Copy(f, srcCSS)
+	io.Copy(destF, srcF)
+}
+
+func copyOverCSS() {
+	srcLocation := "src/assets/css/site.css"
+	destLocation := "dest/css/site.css"
+
+	copyFile(srcLocation, destLocation)
 }
 
 func copyOverImages() {
-	mkDirs("dest/img/")
+	srcLocation := "src/assets/images/louis-sayers.jpg"
+	destLocation := "dest/img/louis-sayers.jpg"
 
-	f := createFile("dest/img/louis-sayers.jpg")
-	defer f.Close()
-
-	img, err := os.Open("src/assets/images/louis-sayers.jpg")
-	if err != nil {
-		panic(err)
-	}
-	defer img.Close()
-
-	io.Copy(f, img)
+	copyFile(srcLocation, destLocation)
 }
 
 func createIndexPage() {
@@ -63,9 +60,10 @@ func createIndexPage() {
 	homeTemplate.Execute(f, nil)
 }
 
-
 func main() {
-	mkDirs("dest")
+	mkDirs("dest/img/")
+	mkDirs("dest/css/")
+
 	copyOverCSS()
 	copyOverImages()
 	createIndexPage()
