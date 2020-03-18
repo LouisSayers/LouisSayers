@@ -36,6 +36,21 @@ func copyOverCSS() {
 	io.Copy(f, srcCSS)
 }
 
+func copyOverImages() {
+	mkDirs("dest/img/")
+
+	f := createFile("dest/img/louis-sayers.jpg")
+	defer f.Close()
+
+	img, err := os.Open("src/assets/images/louis-sayers.jpg")
+	if err != nil {
+		panic(err)
+	}
+	defer img.Close()
+
+	io.Copy(f, img)
+}
+
 func createIndexPage() {
 	homeTemplate, err := template.ParseFiles("src/layouts/base.gohtml", "src/index.gohtml")
 	if err != nil {
@@ -52,5 +67,6 @@ func createIndexPage() {
 func main() {
 	mkDirs("dest")
 	copyOverCSS()
+	copyOverImages()
 	createIndexPage()
 }
