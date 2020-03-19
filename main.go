@@ -54,6 +54,7 @@ func main() {
 	mkDirs("dest/css/")
 
 	copyFile("src/assets/css/site.css", "dest/css/site.css")
+	copyFile("src/assets/css/home.css", "dest/css/home.css")
 	copyFile("src/assets/images/louis-sayers.jpg", "dest/img/louis-sayers.jpg")
 
 	createIndexPage(PageDetails{ PageName: "home" })

@@ -1,0 +1,17 @@
+body.home {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+body.home > * {
+  max-width: 1068px;
+}
+
+.two-col.right-fixed div:nth-child(2) img {
+  max-width: 400px;
+}
