@@ -1,5 +1,12 @@
 body {
   font-family: "Muli", "Helvetica", "Arial", "sans-serif";
+  margin: 0;
+  padding: 0;
+}
+
+body #page_content {
+  margin: 0 auto;
+  max-width: 1024px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -14,10 +21,6 @@ h1 {
 
 .two-col {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-}
-
-.two-col.right-fixed div:nth-child(2) {
-  justify-self: center;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 1rem;
 }
