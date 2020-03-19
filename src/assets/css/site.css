@@ -1,4 +1,5 @@
 body {
+  width: 100%;
   font-family: "Muli", "Helvetica", "Arial", "sans-serif";
   margin: 0;
   padding: 0;
@@ -21,6 +22,6 @@ h1 {
 
 .two-col {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 2rem;
 }
