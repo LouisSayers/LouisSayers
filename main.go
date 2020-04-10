@@ -55,7 +55,7 @@ func main() {
 
 	copyFile("src/assets/css/site.css", "dest/css/site.css")
 	copyFile("src/assets/css/home.css", "dest/css/home.css")
-	copyFile("src/assets/images/louis-sayers.jpg", "dest/img/louis-sayers.jpg")
+	copyFile("src/assets/images/louis-sayers.png", "dest/img/louis-sayers.png")
 
 	createIndexPage(PageDetails{ PageName: "home" })
 }
