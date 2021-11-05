@@ -20,6 +20,10 @@ body > .navbar-container nav {
   grid-column: 2/3;
 }
 
+#hero {
+  margin-top: 50px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Catamaran", "Helvetica", "Arial", "sans-serif";
   font-weight: 200;
@@ -28,6 +32,10 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.2em;
+}
+
+.container {
+  padding: 0 1rem;
 }
 
 .two-col {
